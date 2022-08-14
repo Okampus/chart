@@ -3,7 +3,7 @@ name: Release Okampus Chart
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   release:
