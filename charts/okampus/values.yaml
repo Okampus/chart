@@ -1,0 +1,166 @@
+# Default values for okampus.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+
+image:
+  repository: rg.fr-par.scw.cloud/okampus/okampus
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1111
+  # fsGroup: 2000
+
+app:
+  baseTenant: efrei
+  baseUrl: okampus.fr
+  fqdn: api.okampus.fr
+  frontendUrl: efrei.okampus.fr
+
+  db:
+    # In this section, everything should be filled, else it will keep the old value in the secret (or nothing for the first install)
+    host:
+    port: 5432
+    name: okampus
+    user:
+    password:
+
+  redis:
+    host:
+    port: 6379
+
+  novu:
+    enabled: true
+    apiKey:
+    appId:
+
+  secrets:
+    accessToken:
+    refreshToken:
+    wsToken:
+    cookieSignature:
+    session:
+
+  sentryDSN: https://a@b.ingest.sentry.io/1234
+
+  typesense:
+    enabled: true
+    apiKey:
+
+  meilisearch:
+    enabled: true
+
+  s3:
+    key:
+    secret:
+    region:
+    endpoint:
+
+  storage:
+    # Currently this Helm chart doesn't support the config without S3-compatible buckets
+    s3: true
+    bucketNames:
+      profileImages: okampus-profile-images
+      documents: okampus-documents
+      attachments: okampus-attachments
+      teamFiles: okampus-team-files
+      teamGaleries: okampus-team-galeries
+      teamReceipts: okampus-team-receipts
+      tenants: okampus-tenants
+    uploadMaxSize: 10485760
+
+  admin:
+    username: okampus-admin
+    password:
+    firstName: Okampus
+    lastName: Admin
+
+env:
+envFrom:
+
+securityContext:
+  {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Typesense config
+
+typesense:
+  # WARNING: This needs to be changed manually, in the format <appName-typesense>
+  name: okampus-typesense
+  apiKeySecret: okampus-typesense
+  persistence:
+    enable: true
+    size: 10Gi
+  enableCors: true
+
+typesenseUrl: typesense.okampus.fr
+
+meilisearch:
+  # WARNING: This needs to be changed manually, in the format <appName-typesense>
+  nameOverride: okampus-meilisearch
+  image:
+    tag: v0.28.1
+  environment:
+    MEILI_ENV: production
+  persistence:
+    enabled: true
+  command:
+    - /bin/sh
+    - -c
+    - /bin/meilisearch
+    - --enable-auto-batching
+
+meilisearchUrl: meilisearch.okampus.fr
+
+# Redis config
+redis:
+  fullnameOverride: okampus-redis
+  auth:
+    enabled: false
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      labels:
+        instance: primary
+  replica:
+    replicaCount: 2
+    persistence:
+      enabled: false
+  master:
+    persistence:
+      enabled: false

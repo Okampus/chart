@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "okampus.fullname" . }}
+  labels:
+    {{- include "okampus.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "okampus.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "okampus.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "okampus.configMap" . }}
+            - secretRef:
+                name: {{ include "okampus.dbSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.keysSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.novuSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.s3Secret" . }}
+            - secretRef:
+                name: {{ include "okampus.tsSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.adminSecret" . }}
+            {{- if .Values.envFrom }}
+            {{- toYaml .Values.envFrom | nindent 12  }}
+            {{- end }}
+          env:
+            - name: NODE_ENV
+              value: "production"
+            {{- if .Values.app.meilisearch.enabled }}
+            - name: MEILISEARCH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s-master-key" (include "okampus.fullname" .) .Values.meilisearch.nameOverride }}
+                  key: MEILI_MASTER_KEY
+                  optional: false
+            {{ end }}
+            {{- toYaml .Values.env | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            httpGet:
+              path: /health
+              port: http
+          startupProbe:
+            failureThreshold: 15
+            periodSeconds: 5
+            timeoutSeconds: 2
+            httpGet:
+              path: /health
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

@@ -1,0 +1,12 @@
+dependencies:
+- name: contour
+  repository: https://charts.bitnami.com/bitnami
+  version: 9.0.3
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.0.10
+- name: meilisearch
+  repository: https://meilisearch.github.io/meilisearch-kubernetes
+  version: 0.1.38
+digest: sha256:f6836c1cf9b0af25d865464093042357d34bfae1d5b11846bf6aa6d2522cc99e
+generated: "2022-08-14T15:57:19.4052918+02:00"
