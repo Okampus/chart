@@ -24,7 +24,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
@@ -37,8 +37,6 @@ spec:
                 name: {{ include "okampus.novuSecret" . }}
             - secretRef:
                 name: {{ include "okampus.s3Secret" . }}
-            - secretRef:
-                name: {{ include "okampus.tsSecret" . }}
             - secretRef:
                 name: {{ include "okampus.adminSecret" . }}
             {{- if .Values.envFrom }}
@@ -55,7 +53,9 @@ spec:
                   key: MEILI_MASTER_KEY
                   optional: false
             {{ end }}
+            {{- if .Values.env }}
             {{- toYaml .Values.env | nindent 12 }}
+            {{ end }}
           ports:
             - name: http
               containerPort: 8081

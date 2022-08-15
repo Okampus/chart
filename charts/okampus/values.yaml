@@ -7,6 +7,7 @@ replicaCount: 3
 image:
   repository: rg.fr-par.scw.cloud/okampus/okampus
   pullPolicy: IfNotPresent
+  tag:
 
 imagePullSecrets: []
 nameOverride: ""
@@ -22,6 +23,8 @@ app:
   baseUrl: okampus.fr
   fqdn: api.okampus.fr
   frontendUrl: efrei.okampus.fr
+
+  preprod: false
 
   db:
     # In this section, everything should be filled, else it will keep the old value in the secret (or nothing for the first install)
@@ -49,9 +52,9 @@ app:
 
   sentryDSN: https://a@b.ingest.sentry.io/1234
 
-  typesense:
-    enabled: true
-    apiKey:
+  # typesense:
+  #   enabled: true
+  #   apiKey:
 
   meilisearch:
     enabled: true
@@ -81,7 +84,14 @@ app:
     firstName: Okampus
     lastName: Admin
 
-env:
+  anon:
+    username: anon
+    password:
+    email: anon@okampus.fr
+    firstName: Anonyme
+    lastName: Anonyme
+
+env: []
 envFrom:
 
 securityContext:
@@ -118,19 +128,19 @@ affinity: {}
 
 # Typesense config
 
-typesense:
-  # WARNING: This needs to be changed manually, in the format <appName-typesense>
-  name: okampus-typesense
-  apiKeySecret: okampus-typesense
-  persistence:
-    enable: true
-    size: 10Gi
-  enableCors: true
+# typesense:
+#   # WARNING: This needs to be changed manually, in the format <appName-typesense>
+#   name: okampus-typesense
+#   apiKeySecret: okampus-typesense
+#   persistence:
+#     enable: true
+#     size: 10Gi
+#   enableCors: true
 
-typesenseUrl: typesense.okampus.fr
+# typesenseUrl: typesense.okampus.fr
 
 meilisearch:
-  # WARNING: This needs to be changed manually, in the format <appName-typesense>
+  # WARNING: This needs to be changed manually, in the format <appName-meilisearch>
   nameOverride: okampus-meilisearch
   image:
     tag: v0.28.1

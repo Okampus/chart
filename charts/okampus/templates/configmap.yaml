@@ -26,9 +26,8 @@ data:
   S3_BUCKET_NAME_TEAM_GALLERIES: {{ .Values.app.storage.bucketNames.teamGaleries | quote }}
   S3_BUCKET_NAME_TEAM_RECEIPTS: {{ .Values.app.storage.bucketNames.teamReceipts | quote }}
   S3_BUCKET_NAME_TENANTS: {{ .Values.app.storage.bucketNames.tenants | quote }}
-  TYPESENSE_ENABLED: {{ .Values.app.typesense.enabled | quote }}
-  TYPESENSE_HOST: {{ printf "%s.%s.svc.cluster.local" .Values.typesense.name .Release.Namespace }}
-  TYPESENSE_PORT: "80"
   MEILISEARCH_ENABLED: {{ .Values.app.meilisearch.enabled | quote }}
   MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.fullname" .) .Values.meilisearch.nameOverride .Release.Namespace }}
   NOVU_ENABLED: {{ .Values.app.novu.enabled | quote }}
+  {{ if .Values.app.preprod -}}
+  {{- end }}
