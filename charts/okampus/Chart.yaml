@@ -1,33 +1,13 @@
 apiVersion: v2
-name: okampus
-description: Student platform & digital workspace for schools
-
-# A chart can be either an 'application' or a 'library' chart.
-#
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-# a dependency of application charts to inject those utilities and functions into the rendering
-# pipeline. Library charts do not define any templates and therefore cannot be deployed.
-type: application
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-version: 0.2.3
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application.
-appVersion: "ff2f4b9"
-
+appVersion: 7fde8c236dd970ab451d396140b84c7ffa1ae90d
 dependencies:
-  # - name: typesense
-  #   version: "0.1.6"
-  #   repository: "https://hmphu.github.io/helm-charts/"
   - name: redis
-    version: "17.0.10"
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: https://charts.bitnami.com/bitnami
+    version: 17.0.10
   - name: meilisearch
-    version: "0.1.38"
-    repository: "https://meilisearch.github.io/meilisearch-kubernetes"
-
+    repository: https://meilisearch.github.io/meilisearch-kubernetes
+    version: 0.1.38
+description: Student platform & digital workspace for schools
+name: okampus
+type: application
+version: 0.2.4
