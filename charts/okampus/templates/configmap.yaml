@@ -6,7 +6,7 @@ metadata:
     {{- include "okampus.labels" . | nindent 4 }}
 data:
   PORT: "8081"
-  BASE_TENANT: {{ .Values.app.baseTenant }}
+  BASE_TENANT: {{ .Values.app.baseTenant.name }}
   BASE_DOMAIN: {{ .Values.app.baseUrl }}
   FRONTEND_URL: {{ .Values.app.frontendUrl }}
   UPLOAD_MAX_SIZE: {{ .Values.app.storage.uploadMaxSize | int64 | quote }}

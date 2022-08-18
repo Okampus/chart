@@ -101,6 +101,13 @@ Get the name for the anon secret
 {{- end -}}
 
 {{/*
+Get the name for the base tenant secret
+*/}}
+{{- define "okampus.baseTenantSecret" -}}
+{{- printf "%s-%s" (include "okampus.name" .) "basetenant" -}}
+{{- end -}}
+
+{{/*
 Get the name for the general configMap
 */}}
 {{- define "okampus.configMap" -}}

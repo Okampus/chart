@@ -19,7 +19,15 @@ podSecurityContext:
   # fsGroup: 2000
 
 app:
-  baseTenant: efrei
+  baseTenant: 
+    name: okampus
+    oidc:
+      enabled: "false"
+      clientId: "your_oidc_client_id"
+      clientSecret: "your_oidc_client_secret"
+      discoveryUrl: "https://oauth2service.com/.well-known/openid-configuration"
+      scopes: "openid profile"
+      callbackUri: "https://api.okampus.fr/auth/tenant/callback"
   baseUrl: okampus.fr
   fqdn: api.okampus.fr
   frontendUrl: efrei.okampus.fr
