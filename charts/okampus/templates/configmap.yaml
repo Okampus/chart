@@ -23,7 +23,7 @@ data:
   S3_BUCKET_NAME_DOCUMENTS: {{ .Values.app.storage.bucketNames.documents | quote }}
   S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.app.storage.bucketNames.attachments | quote }}
   S3_BUCKET_NAME_TEAM_FILES: {{ .Values.app.storage.bucketNames.teamFiles | quote }}
-  S3_BUCKET_NAME_TEAM_GALLERIES: {{ .Values.app.storage.bucketNames.teamGaleries | quote }}
+  S3_BUCKET_NAME_TEAM_GALLERIES: {{ .Values.app.storage.bucketNames.teamGalleries | quote }}
   S3_BUCKET_NAME_TEAM_RECEIPTS: {{ .Values.app.storage.bucketNames.teamReceipts | quote }}
   S3_BUCKET_NAME_TENANTS: {{ .Values.app.storage.bucketNames.tenants | quote }}
   MEILISEARCH_ENABLED: {{ .Values.app.meilisearch.enabled | quote }}

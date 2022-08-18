@@ -81,7 +81,7 @@ app:
       documents: okampus-documents
       attachments: okampus-attachments
       teamFiles: okampus-team-files
-      teamGaleries: okampus-team-galeries
+      teamGalleries: okampus-team-galleries
       teamReceipts: okampus-team-receipts
       tenants: okampus-tenants
     uploadMaxSize: 10485760
