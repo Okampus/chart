@@ -39,6 +39,8 @@ spec:
                 name: {{ include "okampus.s3Secret" . }}
             - secretRef:
                 name: {{ include "okampus.adminSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.baseTenantSecret" . }}
             {{- if .Values.envFrom }}
             {{- toYaml .Values.envFrom | nindent 12  }}
             {{- end }}
