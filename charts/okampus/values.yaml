@@ -57,6 +57,7 @@ app:
     wsToken:
     cookieSignature:
     session:
+    botToken:
 
   sentryDSN: https://a@b.ingest.sentry.io/1234
 
