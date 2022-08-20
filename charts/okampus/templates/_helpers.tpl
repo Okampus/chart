@@ -55,61 +55,61 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Get the name for the various key secrets
 */}}
 {{- define "okampus.keysSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "keys" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "keys" -}}
 {{- end -}}
 
 {{/*
 Get the name for the s3 secret
 */}}
 {{- define "okampus.s3Secret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "s3" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "s3" -}}
 {{- end -}}
 
 {{/*
 Get the name for the db secret
 */}}
 {{- define "okampus.dbSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "db" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "db" -}}
 {{- end -}}
 
 {{/*
 Get the name for the Postgre secret
 */}}
 {{- define "okampus.postgreSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "postgres" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "postgres" -}}
 {{- end -}}
 
 {{/*
 Get the name for the Novu secret
 */}}
 {{- define "okampus.novuSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "novu" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "novu" -}}
 {{- end -}}
 
 {{/*
 Get the name for the admin secret
 */}}
 {{- define "okampus.adminSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "admin" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "admin" -}}
 {{- end -}}
 
 {{/*
 Get the name for the anon secret
 */}}
 {{- define "okampus.anonSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "anon" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "anon" -}}
 {{- end -}}
 
 {{/*
 Get the name for the base tenant secret
 */}}
 {{- define "okampus.baseTenantSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "basetenant" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "basetenant" -}}
 {{- end -}}
 
 {{/*
 Get the name for the general configMap
 */}}
 {{- define "okampus.configMap" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "config" -}}
+{{- printf "%s-%s" (include "okampus.fullname" .) "config" -}}
 {{- end -}}
