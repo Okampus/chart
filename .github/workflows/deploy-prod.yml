@@ -1,0 +1,50 @@
+name: Deploy to production
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types:
+      - completed
+
+jobs:
+  bump:
+    name: Bump chart version
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+    - uses: actions/github-script@v3
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      with:
+        script: |
+            core.setFailed('Chart version not bumped, deployment to production aborted')
+    - name: Checkout infra repository
+      uses: actions/checkout@v3
+      with:
+        repository: 'Okampus/infra'
+        path: /home/runner/work/infra
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+
+    - name: Checkout charts repository
+      uses: actions/checkout@v3
+      with:
+        path: /home/runner/work/chart
+    
+    - name: Read Okampus chart version
+      uses: mikefarah/yq@master
+      with:
+        cmd: echo "CHART_VERSION=$(yq '.version' '/home/runner/work/chart/Chart.yaml')" >> $GITHUB_ENV
+
+    - name: Set okampus dependency chart version
+      uses: mikefarah/yq@master
+      with:
+        cmd: yq -i '.dependencies[0].version = "$CHART_VERSION"' '/home/runner/work/infra/Chart.yaml'
+    
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Updated chart version to $CHART_VERSION"
+        
+        https://github.com/Okampus/chart/tree/${{ github.sha }}'
+        git push
+    
