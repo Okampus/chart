@@ -5,6 +5,9 @@ on:
     workflows: ["pages-build-deployment"]
     types:
       - completed
+  push:
+    branches:
+      - "master"
 
 jobs:
   bump:
@@ -21,23 +24,23 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: 'Okampus/infra'
-        path: /home/runner/work/infra
+        path: infra
         token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
 
     - name: Checkout charts repository
       uses: actions/checkout@v3
       with:
-        path: /home/runner/work/chart
+        path: chart
     
     - name: Read Okampus chart version
       uses: mikefarah/yq@master
       with:
-        cmd: echo "CHART_VERSION=$(yq '.version' '/home/runner/work/chart/Chart.yaml')" >> $GITHUB_ENV
+        cmd: echo "CHART_VERSION=$(yq '.version' chart/Chart.yaml)" >> $GITHUB_ENV
 
     - name: Set okampus dependency chart version
       uses: mikefarah/yq@master
       with:
-        cmd: yq -i '.dependencies[0].version = "$CHART_VERSION"' '/home/runner/work/infra/Chart.yaml'
+        cmd: yq -i '.dependencies[0].version = "$CHART_VERSION"' infra/Chart.yaml
     
     - run: |
         git config user.name github-actions
