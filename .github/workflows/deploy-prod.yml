@@ -42,8 +42,8 @@ jobs:
       with:
         cmd: yq -i '.dependencies[0].version = "$CHART_VERSION"' infra/Chart.yaml
     
-    - run: |
-        cd infra
+    - working-directory: infra
+      run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add .
