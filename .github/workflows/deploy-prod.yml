@@ -35,7 +35,7 @@ jobs:
     - name: Read Okampus chart version
       uses: mikefarah/yq@master
       with:
-        cmd: echo "CHART_VERSION=$(yq '.version' chart/Chart.yaml)" >> $GITHUB_ENV
+        cmd: echo "CHART_VERSION=$(yq '.version' chart/charts/okampus/Chart.yaml)" >> $GITHUB_ENV
 
     - name: Set okampus dependency chart version
       uses: mikefarah/yq@master
