@@ -37,7 +37,7 @@ jobs:
     - name: Set okampus dependency chart version
       uses: mikefarah/yq@master
       with:
-        cmd: yq -i ".dependencies[0].version = \"${{ env.CHART_VERSION }}\"" infra/Chart.yaml
+        cmd: yq -i '.dependencies[0].version = "${{ env.CHART_VERSION }}"' infra/Chart.yaml
     
     - working-directory: infra
       run: |
