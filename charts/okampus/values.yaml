@@ -80,7 +80,7 @@ app:
     bucketNames:
       profileImages: okampus-profile-images
       documents: okampus-documents
-      attachments: okampus-attachments
+      attachments: okampus-content-attachments
       teamFiles: okampus-team-files
       teamGalleries: okampus-team-galleries
       teamReceipts: okampus-team-receipts
