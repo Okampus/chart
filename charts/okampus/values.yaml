@@ -19,7 +19,7 @@ podSecurityContext:
   # fsGroup: 2000
 
 app:
-  baseTenant: 
+  baseTenant:
     name: okampus
     oidc:
       enabled: "false"
@@ -78,13 +78,12 @@ app:
     # Currently this Helm chart doesn't support the config without S3-compatible buckets
     s3: true
     bucketNames:
-      profileImages: okampus-profile-images
-      documents: okampus-documents
-      attachments: okampus-content-attachments
-      teamFiles: okampus-team-files
-      teamGalleries: okampus-team-galleries
+      teamImages: okampus-team-images
+      teamDocuments: okampus-team-documents
       teamReceipts: okampus-team-receipts
-      tenants: okampus-tenants
+      tenantImages: okampus-tenant-images
+      userImages: okampus-user-images
+      attachments: okampus-attachments
     uploadMaxSize: 10485760
 
   admin:
