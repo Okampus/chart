@@ -84,6 +84,7 @@ app:
       tenantImages: okampus-tenant-images
       userImages: okampus-user-images
       attachments: okampus-attachments
+      documents: okampus-documents
     uploadMaxSize: 10485760
 
   admin:
