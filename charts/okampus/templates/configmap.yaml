@@ -25,6 +25,7 @@ data:
   S3_BUCKET_NAME_TENANT_IMAGES: {{ .Values.app.storage.bucketNames.tenantImages | quote }}
   S3_BUCKET_NAME_USER_IMAGES: {{ .Values.app.storage.bucketNames.userImages | quote }}
   S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.app.storage.bucketNames.attachments | quote }}
+  S3_BUCKET_NAME_DOCUMENTS: {{ .Values.app.storage.bucketNames.documents | quote }}
   MEILISEARCH_ENABLED: {{ .Values.app.meilisearch.enabled | quote }}
   MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.fullname" .) .Values.meilisearch.nameOverride .Release.Namespace }}
   NOVU_ENABLED: {{ .Values.app.novu.enabled | quote }}
