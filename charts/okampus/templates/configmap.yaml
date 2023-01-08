@@ -19,13 +19,11 @@ data:
   S3_ENABLED: {{ .Values.app.storage.s3 | quote }}
   S3_ENDPOINT: {{ .Values.app.s3.endpoint | quote }}
   S3_REGION: {{ .Values.app.s3.region | quote }}
-  S3_BUCKET_NAME_TEAM_IMAGES: {{ .Values.app.storage.bucketNames.teamImages | quote }}
-  S3_BUCKET_NAME_TEAM_DOCUMENTS: {{ .Values.app.storage.bucketNames.teamDocuments | quote }}
-  S3_BUCKET_NAME_TEAM_RECEIPTS: {{ .Values.app.storage.bucketNames.teamReceipts | quote }}
-  S3_BUCKET_NAME_TENANT_IMAGES: {{ .Values.app.storage.bucketNames.tenantImages | quote }}
-  S3_BUCKET_NAME_USER_IMAGES: {{ .Values.app.storage.bucketNames.userImages | quote }}
   S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.app.storage.bucketNames.attachments | quote }}
-  S3_BUCKET_NAME_DOCUMENTS: {{ .Values.app.storage.bucketNames.documents | quote }}
+  S3_BUCKET_NAME_ORG_IMAGES: {{ .Values.app.storage.bucketNames.orgImages | quote }}
+  S3_BUCKET_NAME_ORG_DOCUMENTS: {{ .Values.app.storage.bucketNames.orgDocuments | quote }}
+  S3_BUCKET_NAME_ORG_VIDEOS: {{ .Values.app.storage.bucketNames.orgVideos | quote }}
+  S3_BUCKET_NAME_USER_IMAGES: {{ .Values.app.storage.bucketNames.userImages | quote }}
   MEILISEARCH_ENABLED: {{ .Values.app.meilisearch.enabled | quote }}
   MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.fullname" .) .Values.meilisearch.nameOverride .Release.Namespace }}
   NOVU_ENABLED: {{ .Values.app.novu.enabled | quote }}

@@ -78,13 +78,11 @@ app:
     # Currently this Helm chart doesn't support the config without S3-compatible buckets
     s3: true
     bucketNames:
-      teamImages: okampus-team-images
-      teamDocuments: okampus-team-documents
-      teamReceipts: okampus-team-receipts
-      tenantImages: okampus-tenant-images
-      userImages: okampus-user-images
       attachments: okampus-attachments
-      documents: okampus-documents
+      orgImages: okampus-org-images
+      orgDocuments: okampus-org-documents
+      orgVideos: okampus-org-videos
+      userImages: okampus-user-images
     uploadMaxSize: 10485760
 
   admin:
