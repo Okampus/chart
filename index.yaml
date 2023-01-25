@@ -3,6 +3,23 @@ entries:
   okampus:
   - apiVersion: v2
     appVersion: f2eee6d2738d52459a1395b50794b8750e4acc37
+    created: "2023-01-25T19:15:25.257461416Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.0.10
+    - name: meilisearch
+      repository: https://meilisearch.github.io/meilisearch-kubernetes
+      version: 0.1.38
+    description: Student platform & digital workspace for schools
+    digest: 44bdadef5d3183cea386728057e432908cb330f3755bd9c5d6dac6a61fd0f573
+    name: okampus
+    type: application
+    urls:
+    - https://github.com/Okampus/chart/releases/download/okampus-0.7.88/okampus-0.7.88.tgz
+    version: 0.7.88
+  - apiVersion: v2
+    appVersion: f2eee6d2738d52459a1395b50794b8750e4acc37
     created: "2023-01-08T00:15:36.690300566Z"
     dependencies:
     - name: redis
@@ -1568,4 +1585,4 @@ entries:
     urls:
     - https://github.com/Okampus/chart/releases/download/okampus-0.1.1/okampus-0.1.1.tgz
     version: 0.1.1
-generated: "2023-01-08T00:15:36.69117841Z"
+generated: "2023-01-25T19:15:25.258532829Z"
