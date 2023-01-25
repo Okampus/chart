@@ -58,6 +58,7 @@ app:
     cookieSignature:
     session:
     botToken:
+    cryptoPepper:
 
   sentryDSN: https://a@b.ingest.sentry.io/1234
 
