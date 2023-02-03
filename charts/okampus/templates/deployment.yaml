@@ -67,14 +67,14 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 2
             httpGet:
-              path: /health
+              path: /
               port: http
           startupProbe:
             failureThreshold: 15
             periodSeconds: 5
             timeoutSeconds: 2
             httpGet:
-              path: /health
+              path: /
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
