@@ -84,20 +84,8 @@ app:
       orgDocuments: okampus-org-documents
       orgVideos: okampus-org-videos
       userImages: okampus-user-images
-    uploadMaxSize: 10485760
-
   admin:
-    username: okampus-admin
     password:
-    firstName: Okampus
-    lastName: Admin
-
-  anon:
-    username: anon
-    password:
-    email: anon@okampus.fr
-    firstName: Anonyme
-    lastName: Anonyme
 
 env: []
 envFrom:
