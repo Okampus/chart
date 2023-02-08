@@ -94,13 +94,6 @@ Get the name for the admin secret
 {{- end -}}
 
 {{/*
-Get the name for the anon secret
-*/}}
-{{- define "okampus.anonSecret" -}}
-{{- printf "%s-%s" (include "okampus.fullname" .) "anon" -}}
-{{- end -}}
-
-{{/*
 Get the name for the base tenant secret
 */}}
 {{- define "okampus.baseTenantSecret" -}}
