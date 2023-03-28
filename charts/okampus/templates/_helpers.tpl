@@ -44,7 +44,15 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
-Selector labels
+Hasura Selector labels
+*/}}
+{{- define "hasura.selectorLabels" -}}
+app.kubernetes.io/name: hasura
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
+Okampus Selector labels
 */}}
 {{- define "okampus.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "okampus.name" . }}
@@ -66,16 +74,30 @@ Get the name for the s3 secret
 {{- end -}}
 
 {{/*
-Get the name for the db secret
+Get the name for the Hasura metadata db secret
 */}}
-{{- define "okampus.dbSecret" -}}
+{{- define "hasure.dbSecret" -}}
+hasura-db
+{{- end -}}
+
+{{/*
+Get the name for the core db secret
+*/}}
+{{- define "app.dbSecret" -}}
 {{- printf "%s-%s" (include "okampus.fullname" .) "db" -}}
 {{- end -}}
 
 {{/*
-Get the name for the Postgre secret
+Get the name for the Postgres secret
 */}}
-{{- define "okampus.postgreSecret" -}}
+{{- define "hasura.postgresSecret" -}}
+hasura-postgres
+{{- end -}}
+
+{{/*
+Get the name for the Postgres secret
+*/}}
+{{- define "okampus.postgresSecret" -}}
 {{- printf "%s-%s" (include "okampus.fullname" .) "postgres" -}}
 {{- end -}}
 
@@ -101,7 +123,14 @@ Get the name for the base tenant secret
 {{- end -}}
 
 {{/*
-Get the name for the general configMap
+Hasura configMap name
+*/}}
+{{- define "hasura.configMap" -}}
+hasura-config
+{{- end -}}
+
+{{/*
+Okampus configMap name
 */}}
 {{- define "okampus.configMap" -}}
 {{- printf "%s-%s" (include "okampus.fullname" .) "config" -}}

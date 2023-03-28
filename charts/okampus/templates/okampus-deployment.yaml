@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "okampus.fullname" . }}
   labels:
     {{- include "okampus.labels" . | nindent 4 }}
+  name: {{ include "okampus.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -30,7 +30,7 @@ spec:
             - configMapRef:
                 name: {{ include "okampus.configMap" . }}
             - secretRef:
-                name: {{ include "okampus.dbSecret" . }}
+                name: {{ include "app.dbSecret" . }}
             - secretRef:
                 name: {{ include "okampus.keysSecret" . }}
             - secretRef:

@@ -34,12 +34,20 @@ app:
 
   preprod: false
 
+  hasura:
+    db:
+      host:
+      port: 5432
+      name: hasura-metadata
+      user: hasura-admin
+      password:
+
   db:
     # In this section, everything should be filled, else it will keep the old value in the secret (or nothing for the first install)
     host:
     port: 5432
     name: okampus
-    user:
+    user: okampus-admin
     password:
 
   redis:
