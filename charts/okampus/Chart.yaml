@@ -3,11 +3,11 @@ appVersion: 2c68d13e95741471847bc9c3f6f31fe3d1c90533
 dependencies:
   - name: redis
     repository: https://charts.bitnami.com/bitnami
-    version: 17.0.10
+    version: 17.9.2
   - name: meilisearch
     repository: https://meilisearch.github.io/meilisearch-kubernetes
-    version: 0.1.38
+    version: 0.1.49
 description: Student platform & digital workspace for schools
 name: okampus
 type: application
-version: 0.7.110
+version: 1.0.0

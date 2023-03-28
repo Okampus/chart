@@ -1,0 +1,10 @@
+# {{-  $serviceNamespace := printf "%s-%s" .Values.serviceNamespace .Values.serviceTag -}}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "hasura.configMap" . }}
+  labels:
+    {{- include "hasura.labels" . | nindent 4 }}
+data:
+  {{ if .Values.app.preprod -}}
+  {{- end }}
