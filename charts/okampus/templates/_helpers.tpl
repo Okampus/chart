@@ -88,7 +88,7 @@ Get the name for the s3 secret
 {{/*
 Get the name for the Hasura metadata db secret
 */}}
-{{- define "hasure.dbSecret" -}}
+{{- define "hasura.dbSecret" -}}
 hasura-db
 {{- end -}}
 
