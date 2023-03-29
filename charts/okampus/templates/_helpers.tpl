@@ -32,7 +32,19 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Common labels
+Hasura labels
+*/}}
+{{- define "hasura.labels" -}}
+helm.sh/chart: {{ include "okampus.chart" . }}
+{{ include "hasura.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Okampus labels
 */}}
 {{- define "okampus.labels" -}}
 helm.sh/chart: {{ include "okampus.chart" . }}
