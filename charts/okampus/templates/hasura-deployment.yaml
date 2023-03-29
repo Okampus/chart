@@ -24,12 +24,12 @@ spec:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: { { include "app.dbSecret" . } }
+                  name: {{ include "app.dbSecret" . }}
                   key: db
             - name: HASURA_GRAPHQL_METADATA_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: { { include "hasura.dbSecret" . } }
+                  name: {{ include "hasura.dbSecret" . }}
                   key: db
             ## enable the console served by server
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
