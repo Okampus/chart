@@ -43,7 +43,6 @@ app:
       password:
 
   db:
-    # In this section, everything should be filled, else it will keep the old value in the secret (or nothing for the first install)
     host:
     port: 5432
     name: okampus
