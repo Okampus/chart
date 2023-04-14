@@ -23,8 +23,8 @@ app:
     name: okampus
     oidc:
       enabled: "false"
-      clientId: "your_oidc_client_id"
-      clientSecret: "your_oidc_client_secret"
+      clientId:
+      clientSecret:
       discoveryUrl: "https://oauth2service.com/.well-known/openid-configuration"
       scopes: "openid profile"
       callbackUri: "https://api.okampus.fr/auth/tenant/callback"
