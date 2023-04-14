@@ -4,7 +4,7 @@ metadata:
   labels:
     app: hasura
     hasuraService: custom
-  name: hasura
+  name: {{ .Values.app.hasura.name }}
 spec:
   replicas: 1
   selector:

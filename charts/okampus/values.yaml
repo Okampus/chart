@@ -35,6 +35,8 @@ app:
   preprod: false
 
   hasura:
+    name: hasura
+    fqdn: hasura.okampus.fr
     db:
       host:
       port: 5432
