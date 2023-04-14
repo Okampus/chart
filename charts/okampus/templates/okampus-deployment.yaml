@@ -30,8 +30,6 @@ spec:
             - configMapRef:
                 name: {{ include "okampus.configMap" . }}
             - secretRef:
-                name: {{ include "app.dbSecret" . }}
-            - secretRef:
                 name: {{ include "okampus.keysSecret" . }}
             - secretRef:
                 name: {{ include "okampus.novuSecret" . }}

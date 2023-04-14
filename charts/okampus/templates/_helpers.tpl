@@ -86,20 +86,6 @@ Get the name for the s3 secret
 {{- end -}}
 
 {{/*
-Get the name for the Hasura metadata db secret
-*/}}
-{{- define "hasura.dbSecret" -}}
-hasura-db
-{{- end -}}
-
-{{/*
-Get the name for the core db secret
-*/}}
-{{- define "app.dbSecret" -}}
-{{- printf "%s-%s" (include "okampus.fullname" .) "db" -}}
-{{- end -}}
-
-{{/*
 Get the name for the Postgres secret
 */}}
 {{- define "hasura.postgresSecret" -}}
