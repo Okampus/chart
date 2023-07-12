@@ -30,7 +30,8 @@ spec:
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
           ports:
-            - containerPort: 8080
+            - name: hasura
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             failureThreshold: 10
@@ -38,13 +39,13 @@ spec:
             timeoutSeconds: 2
             httpGet:
               path: /healthz
-              port: http
+              port: hasura
           startupProbe:
             failureThreshold: 15
             periodSeconds: 5
             timeoutSeconds: 2
             httpGet:
               path: /healthz
-              port: http
+              port: hasura
           resources: {{- toYaml .Values.hasura.resources | nindent 12 -}}
 

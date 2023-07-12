@@ -57,7 +57,7 @@ spec:
             {{- toYaml .Values.env | nindent 12 }}
             {{ end }}
           ports:
-            - name: http
+            - name: api
               containerPort: 8081
               protocol: TCP
           livenessProbe:
@@ -66,14 +66,14 @@ spec:
             timeoutSeconds: 2
             httpGet:
               path: /health
-              port: http
+              port: api
           startupProbe:
             failureThreshold: 15
             periodSeconds: 5
             timeoutSeconds: 2
             httpGet:
               path: /health
-              port: http
+              port: api
           resources:
             {{- toYaml .Values.resources | nindent 12 -}}
       {{- with .Values.nodeSelector -}}

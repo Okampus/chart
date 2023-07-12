@@ -11,4 +11,4 @@ spec:
       port: {{ .Values.hasura.service.port }}
       targetPort: {{ .Values.hasura.service.targetPort }}
       protocol: TCP
-  selector: {{- include "okampus.selectorLabels" . | nindent 4 -}}
+  selector: {{- include "hasura.selectorLabels" . | nindent 4 -}}
