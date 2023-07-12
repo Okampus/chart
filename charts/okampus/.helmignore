@@ -2,24 +2,32 @@
 # This supports shell glob matching, relative path matching, and
 # negation (prefixed with !). Only one pattern per line.
 .DS_Store
-# Common VCS dirs
-.git/
-.gitignore
+Thumbs.db
+
+# IDEs and editors
+.vscode/*
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 .bzr/
 .bzrignore
 .hg/
 .hgignore
 .svn/
+.idea/
+*.tmproj
+
+.git/
+.gitignore
+
 # Common backup files
 *.swp
 *.bak
 *.tmp
 *~
-# Various IDEs
-.project
-.idea/
-*.tmproj
-.vscode/
 
 # Custom ignores
 *.py

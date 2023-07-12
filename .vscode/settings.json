@@ -1,0 +1,12 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "[helm-template]": {
+    "editor.formatOnSave": false
+  },
+  "[helm]": {
+    "editor.formatOnSave": false
+  },
+  "[yaml]": {
+    "editor.formatOnSave": false
+  }
+}

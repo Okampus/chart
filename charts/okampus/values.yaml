@@ -2,23 +2,55 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 3
-
-image:
-  repository: rg.fr-par.scw.cloud/okampus/okampus
-  pullPolicy: IfNotPresent
-  tag:
-
-imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+replicaCount: 1
+resources:
+  {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+securityContext:
+  {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 podSecurityContext:
   runAsNonRoot: true
   runAsUser: 1111
   # fsGroup: 2000
 
-app:
+nodeSelector: {}
+affinity: {}
+tolerations: []
+
+service:
+  type: ClusterIP
+  port: 8081
+  targetPort: 8081
+
+imagePullSecrets: []
+image:
+  repository: rg.fr-par.scw.cloud/okampus/okampus
+  pullPolicy: IfNotPresent
+  tag:
+
+env: []
+envFrom:
+
+preprod: false
+okampus:
+  baseUrl: okampus.fr
+  fqdn: api.okampus.fr
+  frontendUrl: efrei.okampus.fr
+
   baseTenant:
     name: okampus
     oidc:
@@ -28,21 +60,9 @@ app:
       discoveryUrl: "https://oauth2service.com/.well-known/openid-configuration"
       scopes: "openid profile"
       callbackUri: "https://api.okampus.fr/auth/tenant/callback"
-  baseUrl: okampus.fr
-  fqdn: api.okampus.fr
-  frontendUrl: efrei.okampus.fr
 
-  preprod: false
-
-  hasura:
-    name: hasura
-    fqdn: hasura.okampus.fr
-    db:
-      host:
-      port: 5432
-      name: hasura-metadata
-      user: hasura-admin
-      password:
+  admin:
+    password:
 
   db:
     host:
@@ -60,6 +80,20 @@ app:
     apiKey:
     appId:
 
+  s3:
+    enabled: true
+    bucketNames:
+      attachments: okampus-attachments
+      orgImages: okampus-org-images
+      orgDocuments: okampus-org-documents
+      orgVideos: okampus-org-videos
+      userImages: okampus-user-images
+
+    key:
+    secret:
+    region:
+    endpoint:
+
   secrets:
     accessToken:
     refreshToken:
@@ -71,78 +105,30 @@ app:
 
   sentryDSN: https://a@b.ingest.sentry.io/1234
 
-  # typesense:
-  #   enabled: true
-  #   apiKey:
 
-  meilisearch:
-    enabled: true
+hasura:
+  service:
+    type: ClusterIP
+    port: 8081
+    targetPort: 8081
 
-  s3:
-    key:
-    secret:
-    region:
-    endpoint:
-
-  storage:
-    # Currently this Helm chart doesn't support the config without S3-compatible buckets
-    s3: true
-    bucketNames:
-      attachments: okampus-attachments
-      orgImages: okampus-org-images
-      orgDocuments: okampus-org-documents
-      orgVideos: okampus-org-videos
-      userImages: okampus-user-images
-  admin:
+  db:
+    host:
+    port: 5432
+    name: hasura-metadata
+    user: hasura-admin
     password:
 
-env: []
-envFrom:
-
-securityContext:
-  {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-service:
-  type: ClusterIP
-  port: 80
-
-resources:
-  {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-# Typesense config
-
-# typesense:
-#   # WARNING: This needs to be changed manually, in the format <appName-typesense>
-#   name: okampus-typesense
-#   apiKeySecret: okampus-typesense
-#   persistence:
-#     enable: true
-#     size: 10Gi
-#   enableCors: true
-
-# typesenseUrl: typesense.okampus.fr
+  name: hasura
+  fqdn: hasura.okampus.fr
+  resources:
+    {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
 
 meilisearch:
   # WARNING: This needs to be changed manually, in the format <appName-meilisearch>
@@ -153,29 +139,30 @@ meilisearch:
     MEILI_ENV: production
   persistence:
     enabled: true
+
+  url: meilisearch.okampus.fr
   command:
     - /bin/sh
     - -c
     - /bin/meilisearch
     - --enable-auto-batching
 
-meilisearchUrl: meilisearch.okampus.fr
-
 # Redis config
 redis:
   fullnameOverride: okampus-redis
+
   auth:
     enabled: false
+  replica:
+    replicaCount: 1
+    persistence:
+      enabled: false
+  master:
+    persistence:
+      enabled: false
   metrics:
     enabled: true
     serviceMonitor:
       enabled: true
       labels:
         instance: primary
-  replica:
-    replicaCount: 2
-    persistence:
-      enabled: false
-  master:
-    persistence:
-      enabled: false

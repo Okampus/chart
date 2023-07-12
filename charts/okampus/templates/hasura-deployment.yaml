@@ -1,20 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: hasura
-    hasuraService: custom
-  name: {{ .Values.app.hasura.name }}
+  name: {{ include "hasura.name" . }}
+  labels: {{- include "hasura.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: hasura
+    matchLabels: {{- include "hasura.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       creationTimestamp: null
-      labels:
-        app: hasura
+      labels: {{- include "hasura.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - image: hasura/graphql-engine:v2.22.1
@@ -24,7 +20,7 @@ spec:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "okampus.postgresSecret" . }}
+                  name: {{ include "hasura.postgresSecret" . }}
                   key: db
             - name: HASURA_GRAPHQL_METADATA_DATABASE_URL
               valueFrom:
@@ -36,4 +32,19 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-          resources: {}
+          livenessProbe:
+            failureThreshold: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            httpGet:
+              path: /healthz
+              port: http
+          startupProbe:
+            failureThreshold: 15
+            periodSeconds: 5
+            timeoutSeconds: 2
+            httpGet:
+              path: /healthz
+              port: http
+          resources: {{- toYaml .Values.hasura.resources | nindent 12 -}}
+

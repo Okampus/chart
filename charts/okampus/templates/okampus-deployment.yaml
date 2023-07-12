@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: {{ include "okampus.name" . }}
   labels:
     {{- include "okampus.labels" . | nindent 4 }}
-  name: {{ include "okampus.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -40,16 +40,16 @@ spec:
             - secretRef:
                 name: {{ include "okampus.baseTenantSecret" . }}
             {{- if .Values.envFrom }}
-            {{- toYaml .Values.envFrom | nindent 12  }}
+            {{- toYaml .Values.envFrom | nindent 12 }}
             {{- end }}
           env:
             - name: NODE_ENV
               value: "production"
-            {{- if .Values.app.meilisearch.enabled }}
+            {{- if .Values.meilisearch.enabled -}}
             - name: MEILISEARCH_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ printf "%s-%s-master-key" (include "okampus.fullname" .) .Values.meilisearch.nameOverride }}
+                  name: {{ printf "%s-%s-master-key" (include "okampus.name" .) .Values.meilisearch.nameOverride }}
                   key: MEILI_MASTER_KEY
                   optional: false
             {{ end }}
@@ -75,16 +75,16 @@ spec:
               path: /health
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
+            {{- toYaml .Values.resources | nindent 12 -}}
+      {{- with .Values.nodeSelector -}}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-    {{- with .Values.affinity }}
+        {{- toYaml . | nindent 8 -}}
+      {{- end -}}
+    {{- with .Values.affinity -}}
       affinity:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+        {{- toYaml . | nindent 8 -}}
+    {{- end -}}
+    {{- with .Values.tolerations -}}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+        {{- toYaml . | nindent 8 -}}
+    {{- end -}}

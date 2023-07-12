@@ -6,26 +6,26 @@ metadata:
     {{- include "okampus.labels" . | nindent 4 }}
 data:
   PORT: "8081"
-  BASE_TENANT_ID: {{ .Values.app.baseTenant.name }}
-  BASE_DOMAIN: {{ .Values.app.baseUrl }}
-  FRONTEND_ORIGIN_URL: {{ .Values.app.frontendUrl }}
-  UPLOAD_MAX_SIZE: {{ .Values.app.storage.uploadMaxSize | int64 | quote }}
-  MIKRO_ORM_HOST: {{ .Values.app.db.host | quote }}
-  MIKRO_ORM_PORT: {{ .Values.app.db.port | quote }}
-  REDIS_HOST: {{ .Values.app.redis.host | default (printf "%s-master.%s.svc.cluster.local" .Values.redis.fullnameOverride .Release.Namespace) }}
-  REDIS_PORT: {{ .Values.app.redis.port | quote }}
-  SENTRY_ENABLED: {{ not (empty .Values.app.sentryDSN) | quote }}
-  SENTRY_DSN: {{ .Values.app.sentryDSN | default "https://a@b.ingest.sentry.io/1234" | quote }}
-  S3_ENABLED: {{ .Values.app.storage.s3 | quote }}
-  S3_ENDPOINT: {{ .Values.app.s3.endpoint | quote }}
-  S3_REGION: {{ .Values.app.s3.region | quote }}
-  S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.app.storage.bucketNames.attachments | quote }}
-  S3_BUCKET_NAME_ORG_IMAGES: {{ .Values.app.storage.bucketNames.orgImages | quote }}
-  S3_BUCKET_NAME_ORG_DOCUMENTS: {{ .Values.app.storage.bucketNames.orgDocuments | quote }}
-  S3_BUCKET_NAME_ORG_VIDEOS: {{ .Values.app.storage.bucketNames.orgVideos | quote }}
-  S3_BUCKET_NAME_USER_IMAGES: {{ .Values.app.storage.bucketNames.userImages | quote }}
-  MEILISEARCH_ENABLED: {{ .Values.app.meilisearch.enabled | quote }}
-  MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.fullname" .) .Values.meilisearch.nameOverride .Release.Namespace }}
-  NOVU_ENABLED: {{ .Values.app.novu.enabled | quote }}
-  {{ if .Values.app.preprod -}}
-  {{- end }}
+  BASE_TENANT_ID: {{ .Values.okampus.baseTenant.name }}
+  BASE_DOMAIN: {{ .Values.okampus.baseUrl }}
+  FRONTEND_ORIGIN_URL: {{ .Values.okampus.frontendUrl }}
+  MIKRO_ORM_HOST: {{ .Values.okampus.db.host | quote }}
+  MIKRO_ORM_PORT: {{ .Values.okampus.db.port | quote }}
+  REDIS_HOST: {{ .Values.okampus.redis.host | default (printf "%s-master.%s.svc.cluster.local" .Values.redis.fullnameOverride .Release.Namespace) }}
+  REDIS_PORT: {{ .Values.okampus.redis.port | quote }}
+  SENTRY_ENABLED: {{ not (empty .Values.okampus.sentryDSN) | quote }}
+  SENTRY_DSN: {{ .Values.okampus.sentryDSN | default "https://a@b.ingest.sentry.io/1234" | quote }}
+  S3_ENABLED: {{ .Values.okampus.s3.enabled | quote }}
+  S3_ENDPOINT: {{ .Values.okampus.s3.endpoint | quote }}
+  S3_REGION: {{ .Values.okampus.s3.region | quote }}
+  S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.okampus.s3.bucketNames.attachments | quote }}
+  S3_BUCKET_NAME_ORG_IMAGES: {{ .Values.okampus.s3.bucketNames.orgImages | quote }}
+  S3_BUCKET_NAME_ORG_DOCUMENTS: {{ .Values.okampus.s3.bucketNames.orgDocuments | quote }}
+  S3_BUCKET_NAME_ORG_VIDEOS: {{ .Values.okampus.s3.bucketNames.orgVideos | quote }}
+  S3_BUCKET_NAME_USER_IMAGES: {{ .Values.okampus.s3.bucketNames.userImages | quote }}
+  S3_UPLOAD_MAX_SIZE: {{ .Values.okampus.s3.uploadMaxSize | int64 | quote }}
+  MEILISEARCH_ENABLED: {{ .Values.meilisearch.enabled | quote }}
+  MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.name" .) .Values.meilisearch.nameOverride .Release.Namespace }}
+  NOVU_ENABLED: {{ .Values.okampus.novu.enabled | quote }}
+  {{- if .Values.okampus.preprod -}}
+  {{- end -}}
