@@ -24,7 +24,7 @@ If release name contains chart name it will be used as a full name.
 
 {{/* Hasura Selector labels */}}
 {{- define "hasura.selectorLabels" -}}
-app.kubernetes.io/name: {{- printf "%s-%s" .Chart.Name "hasura" | trunc 63 | trimSuffix "-" -}}
+app.kubernetes.io/name: {{ printf "%s-%s" .Chart.Name "hasura" | trunc 63 | trimSuffix "-" }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
@@ -47,7 +47,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 
 {{/* Okampus labels */}}
 {{- define "okampus.labels" -}}
-helm.sh/chart: {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
+helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{ include "okampus.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
