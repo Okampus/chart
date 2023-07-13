@@ -71,14 +71,17 @@ okampus:
     user: okampus-admin
     password:
 
-  redis:
-    host:
-    port: 6379
+  meilisearch:
+    enabled: true
 
   novu:
     enabled: true
     apiKey:
     appId:
+
+  redis:
+    host:
+    port: 6379
 
   s3:
     enabled: true

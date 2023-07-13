@@ -24,7 +24,7 @@ data:
   S3_BUCKET_NAME_ORG_VIDEOS: {{ .Values.okampus.s3.bucketNames.orgVideos | quote }}
   S3_BUCKET_NAME_USER_IMAGES: {{ .Values.okampus.s3.bucketNames.userImages | quote }}
   S3_UPLOAD_MAX_SIZE: {{ .Values.okampus.s3.uploadMaxSize | int64 | quote }}
-  MEILISEARCH_ENABLED: {{ .Values.meilisearch.enabled | quote }}
+  MEILISEARCH_ENABLED: {{ .Values.okampus.meilisearch.enabled | quote }}
   MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.name" .) .Values.meilisearch.nameOverride .Release.Namespace }}
   NOVU_ENABLED: {{ .Values.okampus.novu.enabled | quote }}
   {{- if .Values.okampus.preprod -}}
