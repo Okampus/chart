@@ -38,6 +38,8 @@ spec:
             - secretRef:
                 name: {{ include "okampus.adminSecret" . }}
             - secretRef:
+                name: {{ include "okampus.postgresSecret" . }}
+            - secretRef:
                 name: {{ include "okampus.baseTenantSecret" . }}
             {{- if .Values.envFrom }}
             {{- toYaml .Values.envFrom | nindent 12 }}
