@@ -9,8 +9,9 @@ data:
   BASE_TENANT_ID: {{ .Values.okampus.baseTenant.name }}
   BASE_DOMAIN: {{ .Values.okampus.baseUrl }}
   FRONTEND_ORIGIN_URL: {{ .Values.okampus.frontendUrl }}
-  MIKRO_ORM_HOST: {{ .Values.okampus.db.host | quote }}
-  MIKRO_ORM_PORT: {{ .Values.okampus.db.port | quote }}
+  PSQL_HOST: {{ .Values.okampus.db.host | quote }}
+  PSQL_PORT: {{ .Values.okampus.db.port | quote }}
+  ORM_SEEDING_ENABLED: "true"
   REDIS_HOST: {{ .Values.okampus.redis.host | default (printf "%s-master.%s.svc.cluster.local" .Values.redis.fullnameOverride .Release.Namespace) }}
   REDIS_PORT: {{ .Values.okampus.redis.port | quote }}
   SENTRY_ENABLED: {{ not (empty .Values.okampus.sentryDSN) | quote }}

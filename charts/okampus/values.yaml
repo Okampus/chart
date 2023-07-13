@@ -92,10 +92,11 @@ okampus:
       orgVideos: okampus-org-videos
       userImages: okampus-user-images
 
+    endpoint:
+    region:
     key:
     secret:
-    region:
-    endpoint:
+    uploadMaxSize: 10485760
 
   secrets:
     accessToken:
@@ -116,15 +117,6 @@ hasura:
     portName: hasura
     targetPort: 8080
 
-  db:
-    host:
-    port: 5432
-    name: hasura-metadata
-    user: hasura-admin
-    password:
-
-  name: hasura
-  fqdn: hasura.okampus.fr
   resources:
     {}
     # limits:
@@ -133,6 +125,15 @@ hasura:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+
+  name: hasura
+  fqdn: hasura.okampus.fr
+  db:
+    host:
+    port: 5432
+    name: hasura-metadata
+    user: hasura-admin
+    password:
 
 meilisearch:
   # WARNING: This needs to be changed manually, in the format <appName-meilisearch>
