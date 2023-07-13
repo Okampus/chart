@@ -21,13 +21,13 @@ spec:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "hasura.postgresSecret" . }}
-                  key: db
+                  name: {{ include "okampus.postgresSecret" . }}
+                  key: PSQL_CONNECTION_STRING
             - name: HASURA_GRAPHQL_METADATA_DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: {{ include "hasura.postgresSecret" . }}
-                  key: hasuraDb
+                  key: HASURA_METADATA_CONNECTION_STRING
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
           ports:

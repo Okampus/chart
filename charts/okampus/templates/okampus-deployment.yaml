@@ -45,12 +45,6 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            - name: PSQL_DATABASE
-              value: {{ .Values.db.name }}
-            - name: PSQL_USERNAME
-              value: {{ .Values.db.user }}
-            - name: PSQL_PASSWORD
-              value: {{ .Values.db.password }}
             {{- if .Values.meilisearch.enabled -}}
             - name: MEILISEARCH_API_KEY
               valueFrom:
