@@ -14,8 +14,8 @@ data:
   ORM_SEEDING_ENABLED: "true"
   REDIS_HOST: {{ .Values.okampus.redis.host | default (printf "%s-master.%s.svc.cluster.local" .Values.redis.fullnameOverride .Release.Namespace) }}
   REDIS_PORT: {{ .Values.okampus.redis.port | quote }}
-  SENTRY_ENABLED: {{ not (empty .Values.okampus.sentryDSN) | quote }}
-  SENTRY_DSN: {{ .Values.okampus.sentryDSN | default "https://a@b.ingest.sentry.io/1234" | quote }}
+  SENTRY_ENABLED: {{ not (empty .Values.sentryDSN) | quote }}
+  SENTRY_DSN: {{ .Values.sentryDSN | default "https://a@b.ingest.sentry.io/1234" | quote }}
   S3_ENABLED: {{ .Values.okampus.s3.enabled | quote }}
   S3_ENDPOINT: {{ .Values.okampus.s3.endpoint | quote }}
   S3_REGION: {{ .Values.okampus.s3.region | quote }}

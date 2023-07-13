@@ -45,6 +45,7 @@ image:
 env: []
 envFrom:
 
+sentryDSN:
 preprod: false
 okampus:
   baseUrl: okampus.fr
@@ -106,8 +107,6 @@ okampus:
     session:
     botToken:
     cryptoPepper:
-
-  sentryDSN: https://a@b.ingest.sentry.io/1234
 
 
 hasura:
