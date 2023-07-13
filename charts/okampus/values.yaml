@@ -113,6 +113,7 @@ hasura:
   service:
     type: ClusterIP
     port: 80
+    portName: hasura
     targetPort: 8080
 
   db:

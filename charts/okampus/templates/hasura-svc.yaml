@@ -7,7 +7,7 @@ metadata:
 spec:
   type: {{ .Values.hasura.service.type }}
   ports:
-    - name: hasura
+    - name: {{ .Values.hasura.service.portName }}
       port: {{ .Values.hasura.service.port }}
       targetPort: {{ .Values.hasura.service.targetPort }}
       protocol: TCP
