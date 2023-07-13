@@ -36,8 +36,6 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{/* Hasura labels */}}
 {{- define "hasura.labels" -}}
-app: hasura
-hasuraService: custom
 {{ include "hasura.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

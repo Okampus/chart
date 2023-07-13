@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "hasura.name" . }}
-  labels: {{- include "hasura.labels" . | nindent 4 }}
+  labels:
+    {{- include "hasura.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
@@ -15,7 +16,7 @@ spec:
       containers:
         - image: hasura/graphql-engine:v2.22.1
           imagePullPolicy: IfNotPresent
-          name: hasura
+          name: {{ .Values.hasura.service.portName }}
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
@@ -30,7 +31,7 @@ spec:
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
           ports:
-            - name: hasura
+            - name: {{ .Values.hasura.service.portName }}
               containerPort: 8080
               protocol: TCP
           livenessProbe:
@@ -39,13 +40,13 @@ spec:
             timeoutSeconds: 2
             httpGet:
               path: /healthz
-              port: hasura
+              port: {{ .Values.hasura.service.portName }}
           startupProbe:
             failureThreshold: 15
             periodSeconds: 5
             timeoutSeconds: 2
             httpGet:
               path: /healthz
-              port: hasura
+              port: {{ .Values.hasura.service.portName }}
           resources: {{- toYaml .Values.hasura.resources | nindent 12 -}}
 
