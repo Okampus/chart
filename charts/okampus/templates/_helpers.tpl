@@ -1,21 +1,12 @@
 {{/* vim: set filetype=mustache: */}}
 {{/* Expand the name of the chart. */}}
-{{- define "okampus.chartName" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "okampus.name" -}}
+{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{/*
-Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
-*/}}
-{{- define "okampus.name" -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
+{{/* Create chart name and version as used by the chart label. */}}
+{{- define "okampus.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "hasura.name" -}}
@@ -24,13 +15,13 @@ If release name contains chart name it will be used as a full name.
 
 {{/* Hasura Selector labels */}}
 {{- define "hasura.selectorLabels" -}}
-app.kubernetes.io/name: {{ printf "%s-%s" .Chart.Name "hasura" | trunc 63 | trimSuffix "-" }}
+app.kubernetes.io/name: {{ include "hasura.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/* Okampus Selector labels */}}
 {{- define "okampus.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "okampus.chartName" . }}
+app.kubernetes.io/name: {{ include "okampus.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
@@ -45,7 +36,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 
 {{/* Okampus labels */}}
 {{- define "okampus.labels" -}}
-helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+helm.sh/chart: {{ include "okampus.chart" . }}
 {{ include "okampus.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
