@@ -87,11 +87,9 @@ okampus:
   s3:
     enabled: true
     bucketNames:
-      attachments: okampus-attachments
-      orgImages: okampus-org-images
-      orgDocuments: okampus-org-documents
-      orgVideos: okampus-org-videos
-      userImages: okampus-user-images
+      attachments: attachments
+      actorImages: actor-images
+      actorDocuments: actor-documents
 
     endpoint:
     region:

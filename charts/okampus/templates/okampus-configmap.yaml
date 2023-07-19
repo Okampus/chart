@@ -20,10 +20,8 @@ data:
   S3_ENDPOINT: {{ .Values.okampus.s3.endpoint | quote }}
   S3_REGION: {{ .Values.okampus.s3.region | quote }}
   S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.okampus.s3.bucketNames.attachments | quote }}
-  S3_BUCKET_NAME_ORG_IMAGES: {{ .Values.okampus.s3.bucketNames.orgImages | quote }}
-  S3_BUCKET_NAME_ORG_DOCUMENTS: {{ .Values.okampus.s3.bucketNames.orgDocuments | quote }}
-  S3_BUCKET_NAME_ORG_VIDEOS: {{ .Values.okampus.s3.bucketNames.orgVideos | quote }}
-  S3_BUCKET_NAME_USER_IMAGES: {{ .Values.okampus.s3.bucketNames.userImages | quote }}
+  S3_BUCKET_NAME_ACTOR_IMAGES: {{ .Values.okampus.s3.bucketNames.actorImages | quote }}
+  S3_BUCKET_NAME_ACTOR_DOCUMENTS: {{ .Values.okampus.s3.bucketNames.actorDocuments | quote }}
   S3_UPLOAD_MAX_SIZE: {{ .Values.okampus.s3.uploadMaxSize | int64 | quote }}
   MEILISEARCH_ENABLED: {{ .Values.okampus.meilisearch.enabled | quote }}
   MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.name" .) .Values.meilisearch.nameOverride .Release.Namespace }}
