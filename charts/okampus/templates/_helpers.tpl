@@ -1,7 +1,7 @@
 {{/* vim: set filetype=mustache: */}}
 {{/* Expand the name of the chart. */}}
 {{- define "okampus.name" -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/* Create chart name and version as used by the chart label. */}}
@@ -59,9 +59,9 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- printf "%s-%s" (include "hasura.name" .) "postgres" -}}
 {{- end -}}
 
-{{/* Get the name for the Postgres secret */}}
+{{/* Get the name for the Postgres secret / hardcoded for use as datasource in infra */}}
 {{- define "okampus.postgresSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "postgres" -}}
+okampus-postgres
 {{- end -}}
 
 {{/* Get the name for the Novu secret */}}
