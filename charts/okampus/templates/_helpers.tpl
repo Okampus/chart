@@ -14,7 +14,7 @@
 {{- end -}}
 
 {{- define "hasura.endpoint" -}}
-{{- printf "%s.%s.svc.cluster.local" {{ include "hasura.name" . }} {{ .Release.Namespace }}  -}}
+{{ include "hasura.name" . }}.{{ .Release.Namespace }}.svc.cluster.local
 {{- end -}}
 
 {{/* Hasura Selector labels */}}
