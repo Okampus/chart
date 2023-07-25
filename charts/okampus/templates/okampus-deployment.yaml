@@ -47,14 +47,14 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            {{- if .Values.okampus.meilisearch.enabled -}}
+            {{- if .Values.okampus.meilisearch.enabled }}
             - name: MEILISEARCH_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ printf "%s-%s-master-key" (include "okampus.name" .) .Values.meilisearch.nameOverride }}
                   key: MEILI_MASTER_KEY
                   optional: false
-            {{ end }}
+            {{- end -}}
             {{- if .Values.env }}
             {{- toYaml .Values.env | nindent 12 }}
             {{- end }}
