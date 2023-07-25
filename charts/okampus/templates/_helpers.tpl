@@ -13,6 +13,10 @@
 {{- printf "%s-%s" .Release.Name "hasura" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "hasura.endpoint" -}}
+{{- printf "%s.%s.svc.cluster.local" {{ include "hasura.name" . }} {{ .Release.Namespace }}  -}}
+{{- end -}}
+
 {{/* Hasura Selector labels */}}
 {{- define "hasura.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "hasura.name" . }}
@@ -57,6 +61,11 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/* Get the name for the Postgres secret */}}
 {{- define "hasura.postgresSecret" -}}
 {{- printf "%s-%s" (include "hasura.name" .) "postgres" -}}
+{{- end -}}
+
+{{/* Get the name for the Postgres secret */}}
+{{- define "hasura.adminSecret" -}}
+{{- printf "%s-%s" (include "hasura.name" .) "admin" -}}
 {{- end -}}
 
 {{/* Get the name for the Postgres secret / hardcoded for use as datasource in infra */}}

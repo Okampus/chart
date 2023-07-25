@@ -20,6 +20,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "hasura.configMap" . }}
+            - secretRef:
+                name: {{ include "hasura.adminSecret" . }}
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
