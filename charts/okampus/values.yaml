@@ -110,8 +110,8 @@ okampus:
 hasura:
   service:
     type: ClusterIP
-    port: 80
     portName: hasura
+    port: 8080
     targetPort: 8080
 
   resources:

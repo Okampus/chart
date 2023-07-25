@@ -14,9 +14,12 @@ spec:
       labels: {{- include "hasura.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-        - image: hasura/graphql-engine:v2.22.1
+        - name: hasura
+          image: hasura/graphql-engine:v2.22.1
           imagePullPolicy: IfNotPresent
-          name: {{ .Values.hasura.service.portName }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "okampus.configMap" . }}
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
@@ -31,8 +34,8 @@ spec:
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
           ports:
-            - name: {{ .Values.hasura.service.portName }}
-              containerPort: 8080
+            - name: hasura
+              containerPort: {{ .Values.hasura.service.port }}
               protocol: TCP
           livenessProbe:
             failureThreshold: 10
@@ -40,13 +43,13 @@ spec:
             timeoutSeconds: 2
             httpGet:
               path: /healthz
-              port: {{ .Values.hasura.service.portName }}
+              port: hasura
           startupProbe:
             failureThreshold: 15
             periodSeconds: 5
             timeoutSeconds: 2
             httpGet:
               path: /healthz
-              port: {{ .Values.hasura.service.portName }}
+              port: hasura
           resources: {{- toYaml .Values.hasura.resources | nindent 12 -}}
 

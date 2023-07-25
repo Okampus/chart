@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "okampus.labels" . | nindent 4 }}
 data:
-  PORT: "8081"
+  PORT: {{ .Values.service.port | quote }}
   BASE_TENANT_ID: {{ .Values.okampus.baseTenant.name }}
   BASE_DOMAIN: {{ .Values.okampus.baseUrl }}
   FRONTEND_ORIGIN_URL: {{ .Values.okampus.frontendUrl }}

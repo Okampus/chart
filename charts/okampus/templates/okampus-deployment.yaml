@@ -60,7 +60,7 @@ spec:
             {{- end }}
           ports:
             - name: api
-              containerPort: 8081
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             failureThreshold: 10
