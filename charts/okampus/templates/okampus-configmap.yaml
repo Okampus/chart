@@ -26,6 +26,6 @@ data:
   MEILISEARCH_ENABLED: {{ .Values.okampus.meilisearch.enabled | quote }}
   MEILISEARCH_HOST: {{ printf "http://%s-%s.%s.svc.cluster.local:7700" (include "okampus.name" .) .Values.meilisearch.nameOverride .Release.Namespace }}
   NOVU_ENABLED: {{ .Values.okampus.novu.enabled | quote }}
-  HASURA_GRAPHQL_ENDPOINT: {{ .Values.okampus.hasura.endpoint | quote }}
+  HASURA_GRAPHQL_ENDPOINT: {{ include "hasura.endpoint" . }}
   {{- if .Values.okampus.preprod -}}
   {{- end -}}
