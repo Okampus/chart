@@ -47,7 +47,7 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            {{- if .Values.meilisearch.enabled -}}
+            {{- if .Values.okampus.meilisearch.enabled -}}
             - name: MEILISEARCH_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -57,7 +57,7 @@ spec:
             {{ end }}
             {{- if .Values.env }}
             {{- toYaml .Values.env | nindent 12 }}
-            {{ end }}
+            {{- end }}
           ports:
             - name: api
               containerPort: 8081
