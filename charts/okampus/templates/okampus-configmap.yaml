@@ -22,6 +22,8 @@ data:
   S3_BUCKET_NAME_ATTACHMENTS: {{ .Values.okampus.s3.bucketNames.attachments | quote }}
   S3_BUCKET_NAME_QR: {{ .Values.okampus.s3.bucketNames.qr | quote }}
   S3_BUCKET_NAME_RECEIPTS: {{ .Values.okampus.s3.bucketNames.receipts | quote }}
+  S3_BUCKET_NAME_SIGNATURES: {{ .Values.okampus.s3.bucketNames.signatures | quote }}
+  S3_BUCKET_NAME_THUMBNAILS: {{ .Values.okampus.s3.bucketNames.thumbnails | quote }}
   S3_BUCKET_NAME_ACTOR_IMAGES: {{ .Values.okampus.s3.bucketNames.actorImages | quote }}
   S3_BUCKET_NAME_ACTOR_DOCUMENTS: {{ .Values.okampus.s3.bucketNames.actorDocuments | quote }}
   S3_BUCKET_NAME_ACTOR_VIDEOS: {{ .Values.okampus.s3.bucketNames.actorVideos | quote }}

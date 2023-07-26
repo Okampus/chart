@@ -88,8 +88,10 @@ okampus:
     enabled: true
     bucketNames:
       attachments: attachments
-      qr: qr
+      qr: qr-codes
       receipts: receipts
+      signatures: signatures
+      thumbnails: thumbnails
       actorImages: actor-images
       actorDocuments: actor-documents
       actorVideos: actor-videos
