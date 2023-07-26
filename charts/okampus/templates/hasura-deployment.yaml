@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hasura
-          image: hasura/graphql-engine:v2.22.1
+          image: hasura/graphql-engine:v2.30.0
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
