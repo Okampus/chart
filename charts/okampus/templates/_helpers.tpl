@@ -13,10 +13,6 @@
 {{- printf "%s-%s" .Release.Name "hasura" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "hasura.endpoint" -}}
-{{ include "hasura.name" . }}.{{ .Release.Namespace }}.svc.cluster.local
-{{- end -}}
-
 {{/* Hasura Selector labels */}}
 {{- define "hasura.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "hasura.name" . }}
