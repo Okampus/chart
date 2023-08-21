@@ -87,15 +87,15 @@ okampus:
   s3:
     enabled: true
     bucketNames:
+      actorDocuments: actor-documents
+      actorImages: actor-images
+      actorVideos: actor-videos
       attachments: attachments
+      banners: banners
       qr: qr-codes
       receipts: receipts
       signatures: signatures
       thumbnails: thumbnails
-      actorImages: actor-images
-      actorDocuments: actor-documents
-      actorVideos: actor-videos
-
     endpoint:
     region:
     key:
