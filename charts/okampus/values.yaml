@@ -55,6 +55,7 @@ okampus:
   baseTenant:
     name: okampus
     oidc:
+      domain: "demo"
       enabled: "false"
       clientId:
       clientSecret:
