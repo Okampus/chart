@@ -72,6 +72,7 @@ okampus:
     name: okampus
     user: okampus-admin
     password:
+    seedingUrl:
 
   meilisearch:
     enabled: true
