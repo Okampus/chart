@@ -72,7 +72,6 @@ okampus:
     name: okampus
     user: okampus-admin
     password:
-    seedingUrl:
 
   meilisearch:
     enabled: true
@@ -98,6 +97,7 @@ okampus:
       receipts: receipts
       signatures: signatures
       thumbnails: thumbnails
+    bucketSeeding:
     endpoint:
     region:
     key:
