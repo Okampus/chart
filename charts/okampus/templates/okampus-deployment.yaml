@@ -38,7 +38,7 @@ spec:
             - secretRef:
                 name: {{ include "okampus.adminSecret" . }}
             - secretRef:
-                name: {{ include "okampus.postgresSecret" . }}
+                name: {{ include "okampus.dbTenantSecret" . }}
             - secretRef:
                 name: {{ include "okampus.baseTenantSecret" . }}
             - secretRef:

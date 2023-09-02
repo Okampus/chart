@@ -26,12 +26,12 @@ spec:
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "okampus.postgresSecret" . }}
+                  name: {{ include "okampus.dbTenantSecret" . }}
                   key: PSQL_CONNECTION_STRING
             - name: HASURA_GRAPHQL_METADATA_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "hasura.postgresSecret" . }}
+                  name: {{ include "hasura.dbMetadataSecret" . }}
                   key: HASURA_METADATA_CONNECTION_STRING
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
