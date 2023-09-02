@@ -12,7 +12,7 @@ data:
   PSQL_HOST: {{ .Values.okampus.db.host | quote }}
   PSQL_PORT: {{ .Values.okampus.db.port | quote }}
   ORM_SEEDING_ENABLED: "true"
-  ORM_SEEDING_URL: {{ .Values.okampus.db.seedingUrl | quote }}
+  ORM_SEEDING_BUCKET: {{ .Values.okampus.s3.bucketSeeding | quote }}
   REDIS_HOST: {{ .Values.okampus.redis.host | default (printf "%s-master.%s.svc.cluster.local" .Values.redis.fullnameOverride .Release.Namespace) }}
   REDIS_PORT: {{ .Values.okampus.redis.port | quote }}
   SENTRY_ENABLED: {{ not (empty .Values.sentryDSN) | quote }}
