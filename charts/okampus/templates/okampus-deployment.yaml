@@ -40,6 +40,8 @@ spec:
             - secretRef:
                 name: {{ include "okampus.dbTenantSecret" . }}
             - secretRef:
+                name: {{ include "okampus.dbUniversalSecret" . }}
+            - secretRef:
                 name: {{ include "okampus.baseTenantSecret" . }}
             - secretRef:
                 name: {{ include "hasura.adminSecret" . }}
