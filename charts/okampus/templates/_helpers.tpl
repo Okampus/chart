@@ -55,7 +55,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/* Get the name for the Postgres secret */}}
-{{- define "hasura.dbMetadataSecret" -}}
+{{- define "hasura.postgresSecret" -}}
 {{- printf "%s-%s" (include "hasura.name" .) "postgres" -}}
 {{- end -}}
 
@@ -64,14 +64,9 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- printf "%s-%s" (include "hasura.name" .) "admin" -}}
 {{- end -}}
 
-{{/* Get the name for the tenant Postgres secret (hardcoded for use as datasource in infra) */}}
-{{- define "okampus.dbTenantSecret" -}}
-okampus-psql-tenant
-{{- end -}}
-
-{{/* Get the name for the universal db Postgres secret */}}
-{{- define "okampus.dbUniversalSecret" -}}
-okampus-psql-universal
+{{/* Get the name for the Postgres secret / hardcoded for use as datasource in infra */}}
+{{- define "okampus.postgresSecret" -}}
+okampus-postgres
 {{- end -}}
 
 {{/* Get the name for the Novu secret */}}
