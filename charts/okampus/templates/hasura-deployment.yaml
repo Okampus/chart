@@ -23,12 +23,17 @@ spec:
             - secretRef:
                 name: {{ include "hasura.adminSecret" . }}
           env:
-            - name: HASURA_GRAPHQL_DATABASE_URL
+            - name: PSQL_AUTH_DB_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "okampus.dbAuthSecret" . }}
+                  key: PSQL_AUTH_DB_CONNECTION_STRING
+            - name: PSQL_TENANT_DB_CONNECTION_STRING
               valueFrom:
                 secretKeyRef:
                   name: {{ include "okampus.dbTenantSecret" . }}
                   key: PSQL_TENANT_DB_CONNECTION_STRING
-            - name: HASURA_GRAPHQL_DATABASE_URL
+            - name: PSQL_UNIVERSAL_DB_CONNECTION_STRING
               valueFrom:
                 secretKeyRef:
                   name: {{ include "okampus.dbUniversalSecret" . }}

@@ -38,6 +38,8 @@ spec:
             - secretRef:
                 name: {{ include "okampus.adminSecret" . }}
             - secretRef:
+                name: {{ include "okampus.dbAuthSecret" . }}
+            - secretRef:
                 name: {{ include "okampus.dbTenantSecret" . }}
             - secretRef:
                 name: {{ include "okampus.dbUniversalSecret" . }}
