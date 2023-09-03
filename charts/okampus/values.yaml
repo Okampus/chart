@@ -67,12 +67,6 @@ okampus:
     password:
 
   db:
-    auth:
-      host:
-      port: 5432
-      name: okampus-tenant
-      user: okampus-admin
-      password:
     tenant:
       host:
       port: 5432
@@ -85,6 +79,7 @@ okampus:
       name: okampus-universal
       user: okampus-admin
       password:
+
 
   meilisearch:
     enabled: true

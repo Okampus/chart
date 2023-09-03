@@ -13,8 +13,6 @@ data:
   PSQL_TENANT_DB_PORT: {{ .Values.okampus.db.tenant.port | quote }}
   PSQL_UNIVERSAL_DB_HOST: {{ .Values.okampus.db.universal.host | quote }}
   PSQL_UNIVERSAL_DB_PORT: {{ .Values.okampus.db.universal.port | quote }}
-  PSQL_AUTH_DB_HOST: {{ .Values.okampus.db.auth.host | quote }}
-  PSQL_AUTH_DB_PORT: {{ .Values.okampus.db.auth.port | quote }}
   ORM_SEEDING_ENABLED: "true"
   ORM_SEEDING_BUCKET: {{ .Values.okampus.s3.bucketSeeding | quote }}
   REDIS_HOST: {{ .Values.okampus.redis.host | default (printf "%s-master.%s.svc.cluster.local" .Values.redis.fullnameOverride .Release.Namespace) }}

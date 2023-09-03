@@ -2,7 +2,7 @@ apiVersion: v2
 name: okampus
 description: Student platform & digital workspace for schools
 type: application
-version: 1.2.2
+version: 1.2.1
 appVersion: 0c4e0fa1222d9531b44cb2852cc9b7c31e0ec07b
 dependencies:
   - name: redis

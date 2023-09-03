@@ -64,11 +64,6 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- printf "%s-%s" (include "hasura.name" .) "admin" -}}
 {{- end -}}
 
-{{/* Get the name for the auth Postgres secret (hardcoded for use as datasource in infra) */}}
-{{- define "okampus.dbAuthSecret" -}}
-okampus-psql-auth
-{{- end -}}
-
 {{/* Get the name for the tenant Postgres secret (hardcoded for use as datasource in infra) */}}
 {{- define "okampus.dbTenantSecret" -}}
 okampus-psql-tenant
