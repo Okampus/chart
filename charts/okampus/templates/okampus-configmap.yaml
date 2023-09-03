@@ -10,7 +10,7 @@ data:
   BASE_DOMAIN: {{ .Values.okampus.baseUrl }}
   FRONTEND_ORIGIN_URL: {{ .Values.okampus.frontendUrl }}
   PSQL_TENANT_DB_HOST: {{ .Values.okampus.db.tenant.host | quote }}
-  PSQL_TENANT_DB_PORT: {{ .Values.okampus.db.tenant.port | quote }}
+  PSQL_TENANT_PORT: {{ .Values.okampus.db.tenant.port | quote }}
   PSQL_UNIVERSAL_DB_HOST: {{ .Values.okampus.db.universal.host | quote }}
   PSQL_UNIVERSAL_DB_PORT: {{ .Values.okampus.db.universal.port | quote }}
   ORM_SEEDING_ENABLED: "true"

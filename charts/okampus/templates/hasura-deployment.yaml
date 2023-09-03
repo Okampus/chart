@@ -27,12 +27,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "okampus.dbTenantSecret" . }}
-                  key: PSQL_TENANT_DB_CONNECTION_STRING
-            - name: HASURA_GRAPHQL_DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "okampus.dbUniversalSecret" . }}
-                  key: PSQL_UNIVERSAL_DB_CONNECTION_STRING
+                  key: PSQL_CONNECTION_STRING
             - name: HASURA_GRAPHQL_METADATA_DATABASE_URL
               valueFrom:
                 secretKeyRef:
