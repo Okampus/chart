@@ -6,8 +6,7 @@ metadata:
     {{- include "okampus.labels" . | nindent 4 }}
 data:
   PORT: {{ .Values.service.port | quote }}
-  BASE_TENANT_ID: {{ .Values.okampus.baseTenant.name }}
-  BASE_DOMAIN: {{ .Values.okampus.baseUrl }}
+  BASE_TENANT_NAME: {{ .Values.okampus.baseTenant.name }}
   FRONTEND_ORIGIN_URL: {{ .Values.okampus.frontendUrl }}
   PSQL_HOST: {{ .Values.okampus.db.host | quote }}
   PSQL_PORT: {{ .Values.okampus.db.port | quote }}

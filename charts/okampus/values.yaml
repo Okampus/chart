@@ -53,8 +53,9 @@ okampus:
   frontendUrl: efrei.okampus.fr
 
   baseTenant:
-    name: okampus
+    name: Demo
     oidc:
+      name: "mydemo"
       domain: "demo"
       enabled: "false"
       clientId:
