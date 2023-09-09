@@ -44,6 +44,11 @@ jobs:
         run: |
           helm dependency update
 
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.4.0
+        env:
+          CR_TOKEN: "${{ secrets.GH_PAT }}"
+
       - working-directory: infra
         run: |
           git config user.name github-actions
