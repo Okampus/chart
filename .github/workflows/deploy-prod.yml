@@ -44,17 +44,23 @@ jobs:
         run: |
           helm dependency update
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
-        env:
-          CR_TOKEN: "${{ secrets.GH_PAT }}"
+      - name: Install PyBump
+        run: |
+          python3 -m pip install pybump
+        shell: bash
+
+      - name: Automated Version Bump
+        id: version-bump
+        run: |
+          echo "INFRA_CHART_VERSION=$(pybump bump --file infra/Chart.yaml --level patch)" >> $GITHUB_ENV
+        shell: bash
 
       - working-directory: infra
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "Updated chart version to $CHART_VERSION
+          git commit -m "🔖 $INFRA_CHART_VERSION Updated chart version to $CHART_VERSION
 
           https://github.com/Okampus/chart/tree/${{ github.sha }}"
           git push
