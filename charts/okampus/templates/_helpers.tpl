@@ -79,9 +79,14 @@ okampus-postgres
 {{- printf "%s-%s" (include "okampus.name" .) "admin" -}}
 {{- end -}}
 
+{{/* Get the name for the admin secret */}}
+{{- define "okampus.apiKeysSecret" -}}
+{{- printf "%s-%s" (include "okampus.name" .) "api-keys" -}}
+{{- end -}}
+
 {{/* Get the name for the base tenant secret */}}
 {{- define "okampus.baseTenantSecret" -}}
-{{- printf "%s-%s" (include "okampus.name" .) "basetenant" -}}
+{{- printf "%s-%s" (include "okampus.name" .) "base-tenant" -}}
 {{- end -}}
 
 {{/* Hasura configMap name */}}

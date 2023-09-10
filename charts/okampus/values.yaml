@@ -52,6 +52,13 @@ okampus:
   fqdn: api.okampus.fr
   frontendUrl: efrei.okampus.fr
 
+  apiKeys:
+    geoapifyApiKey:
+    textractKeyId:
+    textractKeySecret:
+    textractRegion:
+    inseeApiKey:
+
   baseTenant:
     name: Demo
     oidc:
