@@ -30,17 +30,19 @@ spec:
             - configMapRef:
                 name: {{ include "okampus.configMap" . }}
             - secretRef:
+                name: {{ include "okampus.adminSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.apiKeysSecret" . }}
+            - secretRef:
+                name: {{ include "okampus.baseTenantSecret" . }}
+            - secretRef:
                 name: {{ include "okampus.keysSecret" . }}
             - secretRef:
                 name: {{ include "okampus.novuSecret" . }}
             - secretRef:
-                name: {{ include "okampus.s3Secret" . }}
-            - secretRef:
-                name: {{ include "okampus.adminSecret" . }}
-            - secretRef:
                 name: {{ include "okampus.postgresSecret" . }}
             - secretRef:
-                name: {{ include "okampus.baseTenantSecret" . }}
+                name: {{ include "okampus.s3Secret" . }}
             - secretRef:
                 name: {{ include "hasura.adminSecret" . }}
             {{- if .Values.envFrom }}
