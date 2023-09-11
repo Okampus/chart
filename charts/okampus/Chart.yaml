@@ -2,8 +2,8 @@ apiVersion: v2
 name: okampus
 description: Student platform & digital workspace for schools
 type: application
-version: 1.4.5
-appVersion: 236e7db00cb78e1a4aafc73c53b5c92fd1ca0264
+version: 1.4.6
+appVersion: 099cd78dc4970ad06e6b0c7ac09db73dec92fec2
 dependencies:
   - name: redis
     repository: https://charts.bitnami.com/bitnami
