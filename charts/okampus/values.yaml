@@ -123,12 +123,8 @@ okampus:
 
 
 hasura:
-  service:
-    type: ClusterIP
-    portName: hasura
-    port: 8080
-    targetPort: 8080
-
+  name: hasura
+  fqdn: hasura.okampus.fr
   resources:
     {}
     # limits:
@@ -138,14 +134,11 @@ hasura:
     #   cpu: 100m
     #   memory: 128Mi
 
-  name: hasura
-  fqdn: hasura.okampus.fr
-  db:
-    host:
-    port: 5432
-    name: hasura-metadata
-    user: hasura-admin
-    password:
+  service:
+    type: ClusterIP
+    portName: hasura
+    port: 8080
+    targetPort: 8080
 
 meilisearch:
   # WARNING: This needs to be changed manually, in the format <appName-meilisearch>
