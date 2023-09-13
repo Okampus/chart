@@ -55,11 +55,6 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/* Get the name for the Postgres secret */}}
-{{- define "hasura.postgresSecret" -}}
-{{- printf "%s-%s" (include "hasura.name" .) "postgres" -}}
-{{- end -}}
-
-{{/* Get the name for the Postgres secret */}}
 {{- define "hasura.adminSecret" -}}
 {{- printf "%s-%s" (include "hasura.name" .) "admin" -}}
 {{- end -}}
