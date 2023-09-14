@@ -23,11 +23,18 @@ spec:
             - secretRef:
                 name: {{ include "hasura.adminSecret" . }}
           env:
-            - name: HASURA_GRAPHQL_JWT_SECRET
+            - name: ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ include "okampus.keysSecret" . }}
                   key: ACCESS_TOKEN_SECRET
+            - name: JWT_ALGORITHM
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "okampus.configMap" . }}
+                  key: JWT_ALGORITHM
+            - name: HASURA_GRAPHQL_JWT_SECRET
+              value: {"type": $(JWT_ALGORITHM), "key": $(ACCESS_TOKEN_SECRET)}
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
                 secretKeyRef:

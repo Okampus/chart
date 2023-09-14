@@ -51,6 +51,7 @@ okampus:
   baseUrl: okampus.fr
   fqdn: api.okampus.fr
   frontendUrl: efrei.okampus.fr
+  jwtAlgorithm: HS256
 
   apiKeys:
     geoapifyApiKey:
