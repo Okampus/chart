@@ -34,7 +34,7 @@ spec:
                   name: {{ include "okampus.configMap" . }}
                   key: JWT_ALGORITHM
             - name: HASURA_GRAPHQL_JWT_SECRET
-              value: {"type": $(JWT_ALGORITHM), "key": $(ACCESS_TOKEN_SECRET)}
+              value: {"type": "$(JWT_ALGORITHM)", "key": "$(ACCESS_TOKEN_SECRET)"}
             - name: HASURA_GRAPHQL_DATABASE_URL
               valueFrom:
                 secretKeyRef:
