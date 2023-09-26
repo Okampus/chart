@@ -1,4 +1,4 @@
-# Default values for okampus.
+# Default values for hasura.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -38,7 +38,7 @@ service:
 
 imagePullSecrets: []
 image:
-  repository: rg.fr-par.scw.cloud/okampus/okampus
+  repository: rg.fr-par.scw.cloud/okampus/hasura
   pullPolicy: IfNotPresent
   tag:
 
@@ -47,84 +47,15 @@ envFrom:
 
 sentryDSN:
 preprod: false
-okampus:
-  baseUrl: okampus.fr
-  fqdn: api.okampus.fr
-  frontendUrl: efrei.okampus.fr
-  jwtAlgorithm: HS256
-
-  apiKeys:
-    geoapifyApiKey:
-    textractKeyId:
-    textractKeySecret:
-    textractRegion:
-    inseeApiKey:
-
-  baseTenant:
-    oidc:
-      name: "mydemo"
-      domain: "demo"
-      enabled: "false"
-      clientId:
-      clientSecret:
-      discoveryUrl: "https://oauth2service.com/.well-known/openid-configuration"
-      scopes: "openid profile"
-      callbackUri: "https://api.okampus.fr/auth/tenant/callback"
-
-  admin:
-    password:
-
-  db:
-    host:
-    port: 5432
-    name: okampus
-    user: okampus-admin
-    password:
-
-  meilisearch:
-    enabled: true
-
-  novu:
-    enabled: true
-    apiKey:
-    appId:
-
-  redis:
-    host:
-    port: 6379
-
-  s3:
-    enabled: true
-    bucketNames:
-      actorDocuments: actor-documents
-      actorImages: actor-images
-      actorVideos: actor-videos
-      attachments: attachments
-      banners: banners
-      qr: qr-codes
-      receipts: receipts
-      signatures: signatures
-      thumbnails: thumbnails
-    bucketSeeding:
-    endpoint:
-    region:
-    key:
-    secret:
-    uploadMaxSize: 10485760
-
-  secrets:
-    accessToken:
-    refreshToken:
-    wsToken:
-    cookieSignature:
-    session:
-    botToken:
-    cryptoPepper:
-
 
 hasura:
   name: hasura
-  fqdn: hasura.okampus.fr
+  fqdn: hasura.hasura.fr
+  vercel:
+    projectId:
+    teamId:
+    accessToken:
+
   resources:
     {}
     # limits:
@@ -150,7 +81,7 @@ meilisearch:
   persistence:
     enabled: true
 
-  url: meilisearch.okampus.fr
+  url: meilisearch.hasura.fr
   command:
     - /bin/sh
     - -c

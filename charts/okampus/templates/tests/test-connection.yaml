@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "okampus.name" . }}-test-connection"
-  labels: {{- include "okampus.labels" . | nindent 4 }}
+  name: "{{ include "hasura.vercel" . }}-test-connection"
+  labels: {{- include "hasura.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -10,5 +10,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "okampus.name" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "hasura.vercel" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

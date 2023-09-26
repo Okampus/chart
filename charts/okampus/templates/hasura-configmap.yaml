@@ -5,10 +5,12 @@ metadata:
   labels:
     {{- include "hasura.labels" . | nindent 4 }}
 data:
-  HASURA_INPUT_VALIDATION_WEBHOOK_URL: "https://okampus.fr/api/validation"
+  HASURA_INPUT_VALIDATION_WEBHOOK_URL: "https://hasura.fr/api/validation"
   HASURA_GRAPHQL_EXPERIMENTAL_FEATURES: "naming_convention"
   HASURA_GRAPHQL_DEFAULT_NAMING_CONVENTION: "graphql-default"
   HASURA_GRAPHQL_STRINGIFY_NUMERIC_TYPES: "true"
   HASURA_GRAPHQL_INFER_FUNCTION_PERMISSIONS: "true"
   HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
   HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
+
+

@@ -10,36 +10,29 @@ spec:
     matchLabels: {{- include "hasura.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      creationTimestamp: null
       labels: {{- include "hasura.selectorLabels" . | nindent 8 }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: hasura
-          image: hasura/graphql-engine:v2.30.0
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: {{ include "hasura.configMap" . }}
             - secretRef:
-                name: {{ include "hasura.adminSecret" . }}
+                name: {{ include "hasura.vercel" . }}
           env:
-            - name: ACCESS_TOKEN_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "okampus.keysSecret" . }}
-                  key: ACCESS_TOKEN_SECRET
-            - name: JWT_ALGORITHM
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "okampus.configMap" . }}
-                  key: JWT_ALGORITHM
-            - name: HASURA_GRAPHQL_JWT_SECRET
-              value: "{\"type\": \"$(JWT_ALGORITHM)\",\"key\":\"$(ACCESS_TOKEN_SECRET)\",\"header\":{\"type\":\"Cookie\",\"name\":\"OKAMPUS_ACCESS_TOKEN\"}}"
-            - name: HASURA_GRAPHQL_DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "okampus.postgresSecret" . }}
-                  key: PSQL_CONNECTION_STRING
+            - name: NODE_ENV
+              value: "production"
           ports:
             - name: hasura
               containerPort: {{ .Values.hasura.service.port }}
