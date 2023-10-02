@@ -61,7 +61,6 @@ okampus:
     inseeApiKey:
 
   baseTenant:
-    name: Demo
     oidc:
       name: "mydemo"
       domain: "demo"
