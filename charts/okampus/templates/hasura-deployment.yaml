@@ -33,6 +33,10 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           ports:
             - name: hasura
               containerPort: {{ .Values.hasura.service.port }}
